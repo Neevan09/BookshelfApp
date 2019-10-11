@@ -5,7 +5,7 @@ const book = (props) => {
     return <div className="Book">
         <p> Book : {props.id}</p>
         <p> Title: {props.title} </p>
-        <p> Author: {props.author} </p>
+        <p onClick = {props.click} className="Author"> Author: {props.author} </p>
     </div>;
 };
 
