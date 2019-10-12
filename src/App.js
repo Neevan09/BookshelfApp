@@ -13,7 +13,10 @@ class App extends Component {
             {id: 3, title:"The Woman in White", author:"Wilkie Collins"},
             {id: 4, title:" Little Women", author:"Louisa M. Alcott"},
             {id: 5, title:"Anna Karenina", author:"Leo Tolstoy"},
-            {id: 6, title:"Huckleberry Finn", author:"Mark Twain"}]
+            {id: 6, title:"Huckleberry Finn", author:"Mark Twain"},
+            {id: 7, title:" Little Women", author:"Louisa M. Alcott"},
+            {id: 8, title:"Anna Karenina", author:"Leo Tolstoy"},
+            {id: 9, title:"Huckleberry Finn", author:"Mark Twain"}]
     }
 
     selectBookHandler = (newBook) =>{
@@ -24,7 +27,10 @@ class App extends Component {
                 {id: 3, title:"The Woman in White", author:"Wilkie Collins"},
                 {id: 4, title:" Little Women", author:"Louisa M. Alcott"},
                 {id: 5, title:"Anna Karenina", author:"Leo Tolstoy"},
-                {id: 6, title:"Huckleberry Finn", author:"Mark Twain"}]
+                {id: 6, title:"Huckleberry Finn", author:"Mark Twain"},
+                {id: 7, title:" Little Women", author:"Louisa M. Alcott"},
+                {id: 8, title:"Anna Karenina", author:"Leo Tolstoy"},
+                {id: 9, title:"Huckleberry Finn", author:"Mark Twain"}]
         });
     }
   render() {
@@ -34,7 +40,7 @@ class App extends Component {
             <h1 className="Myreads Divider">MyReads</h1>
           </Container>
           <Container fluid className="CurrentHeading">
-              <h2 className="Currently Divider">Currently Reading</h2>
+              <h2 className="Currently Ruler">Currently Reading</h2>
           </Container>
 
           <Container fluid>
@@ -63,7 +69,7 @@ class App extends Component {
               </Row>
           </Container>
           <Container fluid className="CurrentHeading">
-              <h2 className="Currently Divider">Want to Read</h2>
+              <h2 className="Currently Ruler">Want to Read</h2>
           </Container>
           <Container fluid>
               <Row>
@@ -90,6 +96,35 @@ class App extends Component {
                   </Col>
               </Row>
           </Container>
+          <Container fluid className="CurrentHeading">
+              <h2 className="Currently Ruler">Read</h2>
+          </Container>
+          <Container fluid>
+              <Row>
+                  <Col xs={6} md={4}>
+                      <Book
+                          id={this.state.books[6].id}
+                          title={this.state.books[6].title}
+                          author={this.state.books[6].author}
+                          click = {this.selectBookHandler.bind(this, 'Lethal White')}  />
+                  </Col>
+                  <Col xs={6} md={4}>
+                      <Book
+                          id={this.state.books[7].id}
+                          title={this.state.books[7].title}
+                          author={this.state.books[7].author}
+                          click = {this.selectBookHandler.bind(this, 'Lethal White')}  />
+                  </Col>
+                  <Col xs={6} md={4}>
+                      <Book
+                          id={this.state.books[8].id}
+                          title={this.state.books[8].title}
+                          author={this.state.books[8].author}
+                          click = {this.selectBookHandler.bind(this, 'Lethal White')}  />
+                  </Col>
+              </Row>
+          </Container>
+
           <button onClick={ () => this.selectBookHandler('Fantastic Beast')}>Select</button>
       </div>
     );

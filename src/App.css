@@ -9,13 +9,21 @@
   padding:40px;
 }
 
-
-.Divider{
-  border-style: solid;
-  border-width: 1px 2px 1px 1px;
-  border-radius: 5px;
-  padding: 8px;
+.Ruler
+{
+  border-bottom:1px solid #CCC;
+  width:100%;
+  float:left;
+  padding-bottom:8px;
 }
+
+
+/*.Divider{*/
+/*  border-style: solid;*/
+/*  border-width: 1px 2px 1px 1px;*/
+/*  border-radius: 5px;*/
+/*  padding: 8px;*/
+/*}*/
 
 .Book{
   display: inline-block;
