@@ -3,6 +3,7 @@ import './App.css';
 import Book from './Book/Book'
 import {Container, Row, Col} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Add from './assets/icons/add.png';
 
 class App extends Component {
 
@@ -32,6 +33,25 @@ class App extends Component {
                 {id: 8, title:"Anna Karenina", author:"Leo Tolstoy"},
                 {id: 9, title:"Huckleberry Finn", author:"Mark Twain"}]
         });
+    }
+
+    changeBooknameHandler = (event) => {
+        this.setState({
+            books: [
+                {id: 1, title: 'Harry Potter' , author:"J.K Rowling"},
+                {id: 2, title:"Dream Magic", author:"Penn & Teller"},
+                {id: 3, title: event.target.value, author:"Wilkie Collins"},
+                {id: 4, title:" Little Women", author:"Louisa M. Alcott"},
+                {id: 5, title:"Anna Karenina", author:"Leo Tolstoy"},
+                {id: 6, title:"Huckleberry Finn", author:"Mark Twain"},
+                {id: 7, title:" Little Women", author:"Louisa M. Alcott"},
+                {id: 8, title:"Anna Karenina", author:"Leo Tolstoy"},
+                {id: 9, title:"Huckleberry Finn", author:"Mark Twain"}]
+        });
+    }
+
+    searchPageHandler(){
+        alert('Open Search Page');
     }
   render() {
     return (
@@ -64,7 +84,8 @@ class App extends Component {
                           id={this.state.books[2].id}
                           title={this.state.books[2].title}
                           author={this.state.books[2].author}
-                          click = {this.selectBookHandler.bind(this, 'Lethal White')}  />
+                          click = {this.selectBookHandler.bind(this, 'Lethal White')}
+                          changed = {this.changeBooknameHandler}/>
                   </Col>
               </Row>
           </Container>
@@ -124,7 +145,9 @@ class App extends Component {
                   </Col>
               </Row>
           </Container>
-
+          <div className="OpenSearch">
+                <button onClick = {this.searchPageHandler}> <img src={Add} alt="img" /></button>
+          </div>
           <button onClick={ () => this.selectBookHandler('Fantastic Beast')}>Select</button>
       </div>
     );
