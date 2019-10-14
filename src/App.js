@@ -1,34 +1,51 @@
 import React, { Component } from 'react';
 import './App.css';
-// import Book from './Book/Book'
+
 // import {Container, Row, Col} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import Add from './assets/icons/add.png';
-//import * as BookAPI from './utils/BooksAPI';
+import * as BookAPI from './utils/BooksAPI';
+import Home from './Routes/Home'
+//import Search from './Routes/Search'
+
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            books: [],
-            isLoaded: false
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         books: []
+    //     }
+    // }
+
+
+        state = {
+            books: []
         }
-    }
 
     componentDidMount() {
-        //BookAPI.getAll()
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(res => res.json())
-            .then(json => {
+        BookAPI.getAll()
+        //fetch('https://jsonplaceholder.typicode.com/users')
+            .then((books) => {
                 this.setState({
-                    isLoaded: true,
-                    books: json
+                    books: books
                 })
-            });
-    }
+            })
+        }
 
-    render() {
+            // .catch((err) =>{
+            //     console.log(err)
+            // });
+
+    render(){
+        return(
+            <div className="App">
+                <Home />
+            </div>
+        );
+    }
+    }
+    /*render() {
         const {isLoaded, books} = this.state;
 
         if (!isLoaded) {
@@ -45,11 +62,14 @@ class App extends Component {
                             </li>
                         ))};
                     </ul>
+                    <div className="OpenSearch">
+                        <button onClick = {this.searchPageHandler}> <img src={Add} alt="img" /></button>
+                    </div>
                 </div>
             );
         }
-    }
-}
+    }*/
+
 
 //     // state= {
 //     //     books: [
