@@ -56,6 +56,7 @@ class App extends Component {
                     path="/search" render={()=>(
                     <Search
                         moveBooks={this.moveBooks}
+                        books={this.state.books}
                     />
                 )}
                 />
