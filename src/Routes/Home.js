@@ -1,7 +1,10 @@
 import React,{Component} from 'react'
 import Book from './Book'
+import { Link } from 'react-router-dom'
+
 class Home extends Component {
     render(){
+        //console.log("Home:  " + this.props.books);
         return(
             <div className="list-books">
                 <div className="list-books-title">
@@ -13,9 +16,19 @@ class Home extends Component {
                             <h2 className="bookshelf-title">Currently Reading</h2>
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    <li>
-                                        <Book />
-                                    </li>
+                                    {
+                                        this.props.books
+                                            .filter(book => book.shelf === 'currentlyReading')
+                                            .map(book => (
+                                                <li key={book.id}>
+                                                    <Book
+                                                        book={book}
+                                                        moveBooks = {this.props.moveBooks}
+                                                        currentBook = 'currentlyReading'
+                                                    />
+                                                </li>
+                                            ))
+                                    }
                                 </ol>
                             </div>
                         </div>
@@ -23,9 +36,19 @@ class Home extends Component {
                             <h2 className="bookshelf-title">Want to Read</h2>
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    <li>
-                                        <Book />
-                                    </li>
+                                    {
+                                        this.props.books
+                                            .filter(book => book.shelf === 'wantToRead')
+                                            .map(book => (
+                                                <li key={book.id}>
+                                                    <Book
+                                                        book={book}
+                                                        moveBooks={this.props.moveBooks}
+                                                        currentBook = 'wantToRead'
+                                                    />
+                                                </li>
+                                            ))
+                                    }
                                 </ol>
                             </div>
                         </div>
@@ -33,16 +56,28 @@ class Home extends Component {
                             <h2 className="bookshelf-title">Read</h2>
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    <li>
-                                        <Book />
-                                    </li>
+                                    {
+                                        this.props.books
+                                            .filter(book => book.shelf === 'read')
+                                            .map(book => (
+                                                <li key={book.id}>
+                                                    <Book
+                                                        book={book}
+                                                        moveBooks={this.props.moveBooks}
+                                                        currentBook = 'read'
+                                                    />
+                                                </li>
+                                            ))
+                                    }
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="open-search">
-                    <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+                    <Link
+                        to="/search"
+                    >Add a book</Link>
                 </div>
             </div>
         );

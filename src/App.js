@@ -1,50 +1,68 @@
 import React, { Component } from 'react';
-import './App.css';
-
-// import {Container, Row, Col} from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-//import Add from './assets/icons/add.png';
-import * as BookAPI from './utils/BooksAPI';
+import { Route } from 'react-router-dom'
 import Home from './Routes/Home'
-//import Search from './Routes/Search'
+import Search from './Routes/Search'
 
+import * as BookAPI from './utils/BooksAPI';
+import './App.css';
 
 class App extends Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         books: []
-    //     }
-    // }
-
-
-        state = {
+    constructor(props) {
+        super(props);
+        this.state = {
             books: []
         }
+    }
 
     componentDidMount() {
         BookAPI.getAll()
-        //fetch('https://jsonplaceholder.typicode.com/users')
-            .then((books) => {
+            .then((book) => {
+                //debugger;
                 this.setState({
-                    books: books
+                    books: book
                 })
             })
         }
 
-            // .catch((err) =>{
-            //     console.log(err)
-            // });
+    moveBooks = (book,shelf) =>{
+        //debugger;
+        BookAPI.update(book,shelf);
+
+        BookAPI.getAll()
+            .then((books) => {
+                //debugger;
+                this.setState({
+                    books: books
+                })
+            })
+    }
 
     render(){
+          // console.log("Books:  "+this.state.books);
         return(
             <div className="App">
-                <Home />
+
+                <Route
+                    exact path="/" render={() => (
+                    <Home
+                        books={this.state.books}
+                        moveBooks={this.moveBooks}
+                    />
+                )}
+                />
+
+                <Route
+                    path="/search" render={()=>(
+                    <Search
+                        moveBooks={this.moveBooks}
+                    />
+                )}
+                />
             </div>
         );
     }
-    }
+}
     /*render() {
         const {isLoaded, books} = this.state;
 
